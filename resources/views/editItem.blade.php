@@ -16,11 +16,22 @@
 @section('content')
 		<div class="row">
 		<div class="col-md-6">
-          <form action="{{ url('item/save') }}" method="POST">
+          <form action="{{ url('item/update') }}" method="POST">
+          	  <div class="form-group row">
+			    <label for="id" class="col-sm-4 col-form-label">Id</label>
+			    <div class="col-sm-8">
+			      <input readonly="true" name="id" type="text" class="form-control" id="id" value="{{$item->id_item}}">
+			      @if($errors->has('nama'))
+				      	<small class="form-text text-muted" >
+					  		Nama Tidak Boleh Kosong
+						</small>
+					@endif
+			    </div>
+			  </div> 
           	  <div class="form-group row">
 			    <label for="inputNama" class="col-sm-4 col-form-label">Nama Item</label>
 			    <div class="col-sm-8">
-			      <input name="nama" type="text" class="form-control" id="inputNama" placeholder="Nama Item" value="{{old('nama')}}">
+			      <input name="nama" type="text" class="form-control" id="inputNama" placeholder="Nama Item" value="{{$item->name}}">
 			      @if($errors->has('nama'))
 				      	<small class="form-text text-muted" >
 					  		Nama Tidak Boleh Kosong
@@ -31,7 +42,7 @@
 			  <div class="form-group row">
 			    <label for="inputStock" class="col-sm-4 col-form-label">Jumlah Stock</label>
 			    <div class="col-sm-8">
-			      <input name="jumlah" type="number" class="form-control" id="inputStock" placeholder="Jumlah Stock" value="{{old('jumlah')}}">
+			      <input name="jumlah" type="number" class="form-control" id="inputStock" placeholder="Jumlah Stock" value="{{$item->stock}}">
 			      @if($errors->has('jumlah'))
 				      	<small class="form-text text-muted" >
 					  		Nama Tidak Boleh Kosong
@@ -44,7 +55,11 @@
 			    <div class="col-sm-8">
 				    <select name="satuan" class="form-control" id="inputSatuan" value="{{old('satuan')}}">
 				    	@foreach ($satuan as $key => $value)
-	                    <option value="{{ $key }}">{{ $value }}</option>
+	                    <option
+	                    @if($key == $item->id_satuan)
+	                    selected
+	                    @endif
+	                     value="{{ $key }}">{{ $value }}</option>
 	                    @endforeach
 
 	                    @if($errors->has('satuan'))
@@ -59,7 +74,11 @@
 			    <div class="col-sm-8">
 				    <select name="category" class="form-control" id="inputCategory">
 	                    @foreach ($category as $key => $value)
-	                    <option value="{{ $key }}">{{ $value }}</option>
+	                    <option
+	                     @if($key == $item->id_category)
+	                    selected
+	                    @endif
+	                     value="{{ $key }}">{{ $value }}</option>
 	                    @endforeach
 
 	                    @if($errors->has('category'))
@@ -74,7 +93,7 @@
 			  <div class="form-group row">
 			    <label for="inputBiaya" class="col-sm-4 col-form-label">Biaya</label>
 			    <div class="col-sm-8">
-			      <input name="biaya" type="number" class="form-control" id="inputBiaya" placeholder="Biaya Product" value="{{old('biaya')}}">
+			      <input name="biaya" type="number" class="form-control" id="inputBiaya" placeholder="Biaya Product" value="{{$item->biaya}}">
 			      @if($errors->has('biaya'))
 				      	<small class="form-text text-muted" >
 					  		Biaya Tidak Boleh Kosong
@@ -86,7 +105,7 @@
 			  <div class="form-group row">
 			    <label for="inputKeuntungan" class="col-sm-4 col-form-label">Keuntungan Item</label>
 			    <div class="col-sm-8">
-			      <input name="keuntungan" type="number" class="form-control" id="inputKeuntungan" placeholder="Keuntungan Item" value="{{old('keuntungan')}}">
+			      <input name="keuntungan" type="number" class="form-control" id="inputKeuntungan" placeholder="Keuntungan Item" value="{{$item->keuntungan}}">
 			      @if($errors->has('keuntungan'))
 				      	<small class="form-text text-muted" >
 					  		Keuntungan Tidak Boleh Kosong
@@ -99,31 +118,6 @@
             {{csrf_field()}}
           </form>
      	</div>
-     	 <div class="col-md-6">
-            <table class="table table-bordered" id="users-table">
-              <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Stock</th>
-                </tr>
-              </thead>
-            </table>
-          </div>
 		</div>
-@push('scripts')
-  <script>
-  $(function() {
-      $('#users-table').DataTable({
-          processing: true,
-          serverSide: true,
-          ajax: '{{"/item/json-form"}}',
-          columns: [
-              { data: 'name', name: 'name' },
-              { data: 'stock', name: 'stock' },
-          ]
-      });
-  });
-  </script>
-@endpush
 
 @endsection

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Spk extends Model
 {
-    protected $table = 'item';
-    public $timestamps = true;
-
+    
+    protected $table = 'spk';
+    public $timestamps = false;
     public $guarded =[''];
 }

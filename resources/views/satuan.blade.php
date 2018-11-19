@@ -1,7 +1,7 @@
 @extends('layout.mylayout')
 
-@section('title', 'Enol - Data Item')
-@section('pageHeader','Data Item')
+@section('title', 'Enol - Data Satuan')
+@section('pageHeader','Data Satuan')
 
 
 @section('breadcumb')
@@ -9,21 +9,22 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li> 
-            <li class="breadcrumb-item active">Data Item</li>
+            <li class="breadcrumb-item active">Data Satuan</li>
           </ol>
 @endsection
 @section('content')
+	<div class="row">
+	<div class="col-md-6">
 	<table class="table table-bordered" id="users-table">
         <thead>
             <tr>
-                <th>Nama Product</th>
-                <th>Stock</th>
                 <th>Satuan</th>
-                <th>Category</th>
                 <th>Action</th>
             </tr>
         </thead>
     </table>
+</div>
+</div>
 @endsection
 
 @push('scripts')
@@ -32,15 +33,12 @@
 	    $('#users-table').DataTable({
 	        processing: true,
 	        serverSide: true,
-	        ajax: '{{"/item/json"}}',
+	        ajax: '{{"/satuan/json"}}',
 	        columns: [
-	            { data: 'name', name: 'name' },
-	            { data: 'stock', name: 'stock' },
 	            { data: 'satuan', name: 'satuan' },
-	            { data: 'category_name', name: 'category_name' },
-	            {data: 'action', name: 'action', orderable: false, searchable: false}
+	            { data: 'action', name: 'action' },
 	        ]
 	    });
 	});
 	</script>
-	@endpush
+@endpush

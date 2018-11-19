@@ -13,7 +13,8 @@
 @endsection
 
 @section('content')
-
+		<div class="row">
+		 <div class="col-md-6">
           <form action="{{ url('customer/save') }}" method="POST">
 
           	  <div class="form-group row">
@@ -41,7 +42,7 @@
 			  <div class="form-group row">
 			    <label for="inputContactPerson" class="col-sm-2 col-form-label">Contact Person</label>
 			    <div class="col-sm-10">
-			      <input name="cp" type="text" class="form-control" id="inputContactPerson" placeholder="Contact Person">
+			      <input name="cp" type="text" class="form-control" id="inputContactPerson" placeholder="Contact Person" value="{{old('cp')}}">
 			      @if($errors->has('cp'))
 				      	<small class="form-text text-muted" >
 					  		Cp Tidak Boleh Kosong
@@ -90,9 +91,22 @@
 			    </div>
 			  </div>
             <!--a class="btn btn-primary btn-block" href="{{url('new/customer/save')}}">Register</a-->
-            <button type="submit" class="btn btn-raised btn-primary pull-right">Simpan</button>
+            <button type="submit" class="btn btn-raised btn-primary pull-right col-md-12">Simpan</button>
             {{csrf_field()}}
           </form>
+      </div>
+       <div class="col-md-6">
+            <table class="table table-bordered" id="users-table">
+              <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Vendor</th>
+                    <th>Cp</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+  </div>
           
          @section('javascript')
           <script type="text/javascript">
@@ -125,6 +139,21 @@
 			               }
 			            });
 			    });
+
+			    $(function() {
+			      $('#users-table').DataTable({
+			          processing: true,
+			          serverSide: true,
+			          ajax: '{{"/customer/json-form"}}',
+			          columns: [
+			              { data: 'customer_name', name: 'customer_name' },
+			              { data: 'vendor', name: 'vendor' },
+			              { data: 'cp', name: 'cp' },
+			          ]
+			      });
+			  });
+
+
 			    </script> 
 			    @endsection 
 

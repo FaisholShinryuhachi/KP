@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item_keluar extends Model
 {
     protected $table = 'Item_keluar';
-    public $timestamps = false;
+    public $timestamps = true;
+    public $guarded = ['id_itemkeluar'];
 }
+	
