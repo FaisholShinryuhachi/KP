@@ -54,7 +54,7 @@
       $('#users-table').DataTable({
           processing: true,
           serverSide: true,
-           order: [ [1, 'desc'] ],
+          order: [ [1, 'desc'] ],
           ajax: '{{"/satuan/json-form"}}',
           columns: [
               { data: 'satuan', name: 'satuan' },

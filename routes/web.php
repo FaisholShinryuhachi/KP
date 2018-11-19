@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::group(['middleware' => 'auth'], function(){
+
 //Route Untuk Item	
 Route::group(['prefix' => 'item'], function(){
 	Route::get('/','ItemController@index');	
@@ -90,7 +93,7 @@ Route::get('/', function(){
 	return view('stock');
 });
 
+});
 
-
-
+Auth::routes();
 
