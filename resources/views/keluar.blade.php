@@ -1,6 +1,6 @@
 @extends('layout.mylayout')
 
-@section('title', 'Enol - Data Kealuar')
+@section('title', 'Enol - Data Keluar')
 @section('pageHeader','Pilih Customer')
 
 

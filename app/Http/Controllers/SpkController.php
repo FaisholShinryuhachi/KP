@@ -61,7 +61,9 @@ class SpkController extends Controller
     								]);
 
     	}
-    
+        
+        //dd($item);
+
     	//Perhitungan dss topsis
     	$data = Spk::all();
 
@@ -81,7 +83,14 @@ class SpkController extends Controller
     		$value->stock = $value->stock / $sumStock;
     		$value->biaya = $value->biaya / $sumBiaya;
     		$value->keuntungan = $value->keuntungan / $sumKeuntungan;
-    		$value->masuk = $value->masuk / $sumMasuk;
+            if ($value->masuk == 0)
+    	       $value->masuk = 0;
+            else 
+                $value->masuk = $value->masuk / $sumMasuk;
+
+            if ($value->keluar == 0)
+               $value->keluar = 0;
+            else  
     		$value->keluar = $value->keluar / $sumKeluar;
     	}
 	

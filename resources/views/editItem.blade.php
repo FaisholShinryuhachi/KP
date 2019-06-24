@@ -1,7 +1,7 @@
 @extends('layout.mylayout')
 
-@section('title', 'Enol - New Item')
-@section('pageHeader','Form Tambah Item')
+@section('title', 'Enol - Edit Item')
+@section('pageHeader','Edit Item')
 
 
 @section('breadcumb')
@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li> 
-            <li class="breadcrumb-item active">New Item</li>
+            <li class="breadcrumb-item active">Edit Item</li>
           </ol>
 @endsection
 

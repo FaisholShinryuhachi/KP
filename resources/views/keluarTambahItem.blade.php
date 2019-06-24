@@ -9,7 +9,7 @@
             <li class="breadcrumb-item">
               <a href="#">Dashboard</a>
             </li> 
-            <li class="breadcrumb-item active">Masuk</li>
+            <li class="breadcrumb-item active">Keluar</li>
           </ol>
 @endsection
 
